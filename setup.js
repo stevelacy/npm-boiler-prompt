@@ -84,8 +84,8 @@ function save(data) {
   var files = [
     './package.json.bk',
     './README.md.bk',
-    './LICENSE',
-    './test/index.js'
+    './LICENSE.bk',
+    './test/index.js.bk'
   ];
 
   files.forEach(function(v, k, a) {
