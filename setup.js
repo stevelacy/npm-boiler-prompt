@@ -98,7 +98,7 @@ function save(data) {
 
   cleanSetup(function(err) {
     if (err) return console.log(err);
-    gitInit();
+    gitInit(data);
   });
 
 
