@@ -115,7 +115,10 @@ function cleanSetup() {
 
     rmraf('.git', function(err) {
       if (err) return console.log(err);
-      console.log('Completed successfully\n');
+      fs.unlink('./setup.js', function(err) {
+        if (err) return console.log(err);
+        console.log('Completed successfully\n');
+      });
     });
   });
 }
