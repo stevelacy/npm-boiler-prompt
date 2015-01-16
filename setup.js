@@ -128,7 +128,7 @@ function cleanSetup(cb) {
 }
 
 function gitInit(data) {
-  cmd = 'git init && git remote add origin' + data.gitUrl;
+  cmd = 'git init && git remote add origin ' + data.gitUrl;
   cmd2 = 'git branch --set-upstream-to=origin/master master';
   exec(cmd, function(err) {
     if (err) console.log(err);
