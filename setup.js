@@ -109,7 +109,6 @@ function templateFile(file, data) {
 }
 
 function cleanSetup() {
-  return;
   rmraf('node_modules', function (err) {
     if (err) return console.log(err);
 
