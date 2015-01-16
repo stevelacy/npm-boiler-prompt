@@ -79,8 +79,6 @@ if (argv[2] == '--use-defaults') {
   });
 }
 
-
-
 prompt.get(questions, function(err, data) {
   save(data);
 });
@@ -92,12 +90,15 @@ function save(data) {
   }
   data.year = new Date().getFullYear();
   var pkg = './package.json';
-  var rdm = './README.md';
+  var readme = './README.md';
+  var license = './LICENSE';
+
   fs.rename(pkg + '.bk', pkg, function() {
     fs.writeFileSync(pkg, template(fs.readFileSync(pkg), data));
 
-    fs.rename(rdm + '.bk', rmd, function() {
-      fs.writeFileSync(rdm, template(fs.readFileSync(rdm), data));
+    fs.rename(readme + '.bk', rmd, function() {
+      fs.writeFileSync(readme, template(fs.readFileSync(readme), data));
+      fs.writeFileSync(license, template(fs.readFileSync(license), data));
 
       rmraf('node_modules', function (err) {
         if (err) return console.log(err);
