@@ -11,10 +11,7 @@ var defaults = {
   yourName: 'We Are Fractal',
   yourEmail: 'contact@wearefractal.com',
   yourDomain: 'http://wearefractal.com',
-  gitUserName: 'wearefractal',
-  main: './index.js',
-  test: 'npm run-script lint && mocha --reporter spec',
-  lint: 'jshint . --exclude node_modules --config .jshintrc'
+  gitUserName: 'wearefractal'
 };
 
 
@@ -44,15 +41,6 @@ var questions = {
     gitUserName: {
       required: true,
       default: defaults.gitUserName
-    },
-    main: {
-      default: defaults.main
-    },
-    test: {
-      default: defaults.test
-    },
-    lint: {
-      default: defaults.lint
     }
   }
 };
@@ -89,26 +77,43 @@ function save(data) {
     return;
   }
   data.year = new Date().getFullYear();
-  var pkg = './package.json';
-  var readme = './README.md';
-  var license = './LICENSE';
+  var files = [
+    './package.json',
+    './README.md',
+    './LICENSE',
+    './test/main.js'
+  ];
 
-  fs.rename(pkg + '.bk', pkg, function() {
-    fs.writeFileSync(pkg, template(fs.readFileSync(pkg), data));
+  files.forEach(function(v, k, a) {
 
-    fs.rename(readme + '.bk', readme, function() {
-      fs.writeFileSync(readme, template(fs.readFileSync(readme), data));
-      fs.writeFileSync(license, template(fs.readFileSync(license), data));
-
-      rmraf('node_modules', function (err) {
+    if (v.indexOf('.bk') > -1) {
+      fs.rename(v, v.replace('.bk', ''), function(err) {
         if (err) return console.log(err);
-
-        rmraf('.git', function(err) {
-          if (err) return console.log(err);
-          console.log('Completed successfully\n');
-        });
+        templateFile(v, data);
       });
+    }
+
+    templateFile(v, data);
+
+    if (k === a.length -1) {
+      cleanSetup();
+    }
+
+  });
+}
+
+
+function templateFile(file, data) {
+  fs.writeFileSync(file, template(fs.readFileSync(file), data));
+}
+
+function cleanSetup() {
+  rmraf('node_modules', function (err) {
+    if (err) return console.log(err);
+
+    rmraf('.git', function(err) {
+      if (err) return console.log(err);
+      console.log('Completed successfully\n');
     });
   });
-
 }
