@@ -74,7 +74,7 @@ prompt.get(questions, function(err, data) {
 
 function save(data) {
   if (data === null || data === undefined) {
-    return console.log('Error: inputs are undefined');
+    return console.log('\n Error: inputs are undefined');
   }
   data.year = new Date().getFullYear();
   var files = [
