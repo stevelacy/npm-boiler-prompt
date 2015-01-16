@@ -74,14 +74,14 @@ prompt.get(questions, function(err, data) {
 
 function save(data) {
   if (data === null || data === undefined) {
-    return;
+    return console.log('Error: inputs are undefined');
   }
   data.year = new Date().getFullYear();
   var files = [
-    './package.json',
-    './README.md',
+    './package.json.bk',
+    './README.md.bk',
     './LICENSE',
-    './test/main.js'
+    './test/index.js'
   ];
 
   files.forEach(function(v, k, a) {
@@ -108,6 +108,7 @@ function templateFile(file, data) {
 }
 
 function cleanSetup() {
+  return;
   rmraf('node_modules', function (err) {
     if (err) return console.log(err);
 
