@@ -87,9 +87,10 @@ function save(data) {
   files.forEach(function(v, k, a) {
 
     if (v.indexOf('.bk') > -1) {
-      fs.rename(v, v.replace('.bk', ''), function(err) {
+      var newName = v.replace('.bk', '');
+      return fs.rename(v, newName, function(err) {
         if (err) return console.log(err);
-        templateFile(v, data);
+        templateFile(newName, data);
       });
     }
 

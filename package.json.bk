@@ -1,5 +1,4 @@
 {
   "dependencies": {},
-  "author": "<%=yourName%> <%=yourEmail%> <%=yourDomain%>",
-  "main:": "<%=main%>"
+  "author": "<%=yourName%> <%=yourEmail%> <%=yourDomain%>"
 }
