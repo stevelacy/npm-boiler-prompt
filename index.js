@@ -2,7 +2,7 @@ var fs = require('fs');
 var prompt = require('prompt');
 var template = require('lodash.template');
 var merge = require('lodash.merge');
-var rmraf = require('rmraf');
+var rmraf = require('rimraf');
 
 var argv = process.argv;
 
@@ -96,7 +96,7 @@ function save(data) {
   fs.rename(pkg + '.bk', pkg, function() {
     fs.writeFileSync(pkg, template(fs.readFileSync(pkg), data));
 
-    fs.rename(readme + '.bk', rmd, function() {
+    fs.rename(readme + '.bk', readme, function() {
       fs.writeFileSync(readme, template(fs.readFileSync(readme), data));
       fs.writeFileSync(license, template(fs.readFileSync(license), data));
 
