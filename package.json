@@ -1,0 +1,9 @@
+{
+  "name": "npm-boiler-prompt",
+  "dependencies": {
+    "lodash.merge": "^2.4.1",
+    "lodash.template": "^2.4.1",
+    "prompt": "^0.2.14",
+    "rimraf": "^2.2.8"
+  }
+}
